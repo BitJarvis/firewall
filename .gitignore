@@ -1,0 +1,18 @@
+# macOS Finder metadata
+.DS_Store
+**/.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor / local workspace state
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Runtime / personal secrets
+*.log
+.env
+.env.*
+!.env.example
