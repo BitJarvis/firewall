@@ -19,6 +19,14 @@
 
 ## 快速使用
 
+### Egern 自用分流补充订阅
+
+新增 [`egern/modules/custom-routing.yaml`](./egern/modules/custom-routing.yaml)，将手动补充的域名及远程规则引用集中为一个可更新模块，保留台湾、狮城、美国、自动选择、Apple AI 与数字货币等策略。
+
+在 Egern「工具 → 模块」添加远程地址；需要主配置中已有对应策略组。PR 合并后使用 [main 订阅地址](https://raw.githubusercontent.com/BitJarvis/firewall/main/egern/modules/custom-routing.yaml)。合并前的测试地址、迁移步骤与维护方式见 [`docs/EGERN_SUBSCRIPTIONS.md`](./docs/EGERN_SUBSCRIPTIONS.md)。
+
+### 原有配置与规则片段
+
 1. **完整配置**：在 Quantumult X 中导入 [`quantumultx.conf`](./quantumultx.conf) **或** [`qxv2.conf`](./qxv2.conf)，随后按自己的节点/订阅、DNS 和策略需求进行设置。导入前建议备份现有配置。
 2. **独立规则片段**：根据实际客户端的规则语法，将 Apple AI 或自定义规则添加到合适的规则区域；不要把规则片段当作完整配置导入。
 3. **策略检查**：检查 `proxy`、`direct`、`ProxyMain`、`美国节点` 等策略的引用和匹配逻辑是否符合自己的客户端与节点环境。

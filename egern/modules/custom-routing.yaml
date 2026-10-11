@@ -1,0 +1,174 @@
+name: BitJarvis 自用分流补充
+description: 个人补充分流；保留原始匹配类型、策略与顺序，仅移除完全重复条目。
+author: BitJarvis
+homepage: https://github.com/BitJarvis/firewall
+rules:
+- domain_keyword:
+    match: bybit
+    policy: 台湾节点
+    disabled: false
+- domain_keyword:
+    match: mocortech
+    policy: 台湾节点
+    disabled: false
+- domain_keyword:
+    match: hotbookzone
+    policy: 台湾节点
+    disabled: false
+- domain_keyword:
+    match: flytogarden
+    policy: 台湾节点
+    disabled: false
+- domain_keyword:
+    match: greentreeone
+    policy: 台湾节点
+    disabled: false
+- domain_keyword:
+    match: coldbookfly
+    policy: 台湾节点
+    disabled: false
+- domain_keyword:
+    match: mexc
+    policy: 台湾节点
+    disabled: false
+- domain_suffix:
+    match: oracle.com
+    policy: 狮城节点
+    disabled: false
+- domain_suffix:
+    match: manus.im
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: linear.app
+    policy: 自动选择
+    disabled: false
+- domain_keyword:
+    match: cn-ssl
+    policy: DIRECT
+    disabled: false
+- domain_suffix:
+    match: metaaivm.com
+    policy: 美国节点
+    disabled: false
+- domain_suffix:
+    match: meta.ai
+    policy: 美国节点
+    disabled: false
+- domain_suffix:
+    match: api-siri-prod.apple.com
+    policy: Apple AI
+    disabled: false
+- domain_suffix:
+    match: vercel.app
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: trip.com
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: tradingview.com
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: freshrss.okxbot.com
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: alpinelinux.org
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: wattpad.com
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: webnovel.com
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: grokipedia.com
+    policy: 自动选择
+    disabled: false
+- domain:
+    match: cursor.com
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: nodeseek.com
+    policy: 自动选择
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/takoyakiwhite/asoul_mirror/main/douyin_pcdn.list
+    policy: REJECT
+    disabled: false
+    name: 抖音
+- domain_suffix:
+    match: inoreader.com
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: binance.info
+    policy: 数字货币
+    disabled: false
+- domain_suffix:
+    match: supabase.co
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: ofdpxewtmtdsunjzhweu.supabase.co
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: workers.dev
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: polymarket.us
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: seebestsecond.com
+    policy: 数字货币
+    disabled: false
+- domain_suffix:
+    match: tntv2.online
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: x.ai
+    policy: 自动选择
+    disabled: false
+- domain_suffix:
+    match: linux.do
+    policy: 台湾节点
+    disabled: false
+- domain_suffix:
+    match: bark.us
+    policy: 自动选择
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/BitJarvis/firewall/refs/heads/main/apple-ai-egern.conf
+    policy: Apple AI
+    disabled: false
+    name: AppleAI
+    update_interval: 172800
+- domain:
+    match: wloc-spoofer.wloc.workers.dev
+    policy: 自动选择
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Twitter/Twitter.list
+    policy: 自动选择
+    disabled: false
+    name: Twitter
+    update_interval: 172800
+- domain_suffix:
+    match: oceanupsky.com
+    policy: 数字货币
+    disabled: false
+- domain_suffix:
+    match: seebestfirst.com
+    policy: 数字货币
+    disabled: false
