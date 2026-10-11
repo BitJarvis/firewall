@@ -21,7 +21,7 @@
 
 ### Egern 自用分流补充订阅
 
-新增 [`egern/modules/custom-routing.yaml`](./egern/modules/custom-routing.yaml)，将手动补充的域名及远程规则引用集中为一个可更新模块，保留台湾、狮城、美国、自动选择、Apple AI 与数字货币等策略。
+新增 [`egern/modules/custom-routing.yaml`](./egern/modules/custom-routing.yaml)，将 38 条手动补充的域名规则集中为一个可更新模块，保留台湾、狮城、美国、自动选择、Apple AI 与数字货币等策略。模块不引用其他远程规则集。
 
 在 Egern「工具 → 模块」添加远程地址；需要主配置中已有对应策略组。PR 合并后使用 [main 订阅地址](https://raw.githubusercontent.com/BitJarvis/firewall/main/egern/modules/custom-routing.yaml)。合并前的测试地址、迁移步骤与维护方式见 [`docs/EGERN_SUBSCRIPTIONS.md`](./docs/EGERN_SUBSCRIPTIONS.md)。
 
