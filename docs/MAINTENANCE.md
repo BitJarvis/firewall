@@ -74,3 +74,7 @@ git commit -m "chore: stop tracking macOS metadata"
 ```
 
 之后 `.gitignore` 会阻止其再次被普通的 `git add .` 加入。若本机文件本来不存在，`git rm --cached` 仍可以移除索引记录。
+
+## Egern 与 Clash 自用规则同步
+
+自用规则以 `egern/rules/custom-{direct,proxy}.yaml` 为维护源，Clash 版本由 `scripts/sync_clash_rules.py` 生成。修改后执行生成命令，并将两种格式一起提交。提交前运行 `python3 scripts/sync_clash_rules.py --check`，检查直连/代理两份输出与源文件一致。Clash 导入示例见 [`CLASH_SUBSCRIPTIONS.md`](./CLASH_SUBSCRIPTIONS.md)。

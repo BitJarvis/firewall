@@ -1,6 +1,6 @@
 # Firewall · 代理配置与分流规则
 
-个人维护的 **Quantumult X / Egern** 代理配置与规则片段，包含 Apple AI 分流、AI 服务、媒体服务及广告过滤相关配置。
+个人维护的 **Quantumult X / Egern / Clash** 代理配置与规则片段，包含 Apple AI 分流、AI 服务、媒体服务及广告过滤相关配置。
 
 > [!IMPORTANT]
 > `quantumultx.conf` 和 `qxv2.conf` 是两套**独立的 Quantumult X 完整配置**，不要把它们当作普通规则列表导入，也不要直接拼接两份配置。
@@ -24,6 +24,12 @@
 新增两份普通 Egern 规则集：[`custom-direct.yaml`](./egern/rules/custom-direct.yaml)（`cn-ssl` 直连）和 [`custom-proxy.yaml`](./egern/rules/custom-proxy.yaml)（其余 37 条域名共用一个代理策略）。规则集只保存匹配条件，不引用其他订阅。
 
 在 Egern「工具 → 规则」添加规则集地址，直连集绑定 `DIRECT`，代理集绑定你选择的同一个策略组。分支测试地址、main 长期地址、规则顺序和迁移步骤见 [`docs/EGERN_SUBSCRIPTIONS.md`](./docs/EGERN_SUBSCRIPTIONS.md)。
+
+### Clash 自用分流补充订阅
+
+同一批匹配条件也提供 Clash `classical` 规则集：[`custom-direct.yaml`](./clash/rules/custom-direct.yaml)（1 条直连）和 [`custom-proxy.yaml`](./clash/rules/custom-proxy.yaml)（37 条代理）。直连绑定 `DIRECT`，代理绑定同一个自选策略组。订阅地址及配置示例见 [`docs/CLASH_SUBSCRIPTIONS.md`](./docs/CLASH_SUBSCRIPTIONS.md)。
+
+维护时修改 Egern 源文件，再运行 `python3 scripts/sync_clash_rules.py` 同步生成 Clash 文件；提交前运行 `python3 scripts/sync_clash_rules.py --check` 检查一致性。
 
 ### 原有配置与规则片段
 
