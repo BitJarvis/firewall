@@ -1,40 +1,143 @@
 domain_keyword_set:
-- bybit
-- mocortech
-- hotbookzone
-- flytogarden
-- greentreeone
-- coldbookfly
-- mexc
+  - bybit
+  - mocortech
+  - hotbookzone
+  - flytogarden
+  - greentreeone
+  - coldbookfly
+  - mexc
+
 domain_suffix_set:
-- oracle.com
-- manus.im
-- linear.app
-- metaaivm.com
-- meta.ai
-- api-siri-prod.apple.com
-- vercel.app
-- trip.com
-- tradingview.com
-- freshrss.okxbot.com
-- alpinelinux.org
-- wattpad.com
-- webnovel.com
-- grokipedia.com
-- nodeseek.com
-- inoreader.com
-- binance.info
-- supabase.co
-- ofdpxewtmtdsunjzhweu.supabase.co
-- workers.dev
-- polymarket.us
-- seebestsecond.com
-- tntv2.online
-- x.ai
-- linux.do
-- bark.us
-- oceanupsky.com
-- seebestfirst.com
+  - oracle.com
+  - manus.im
+  - linear.app
+  - metaaivm.com
+  - meta.ai
+  - api-siri-prod.apple.com
+  - vercel.app
+  - trip.com
+  - tradingview.com
+  - freshrss.okxbot.com
+  - alpinelinux.org
+  - wattpad.com
+  - webnovel.com
+  - grokipedia.com
+  - nodeseek.com
+  - inoreader.com
+  - binance.info
+  - supabase.co
+  - ofdpxewtmtdsunjzhweu.supabase.co
+  - workers.dev
+  - polymarket.us
+  - seebestsecond.com
+  - tntv2.online
+  - x.ai
+  - linux.do
+  - bark.us
+  - oceanupsky.com
+  - seebestfirst.com
+  - binance.com
+  - binance.us
+  - binance.me
+  - binance.cloud
+  - binancecnt.com
+  - binancefuture.com
+  - bnappzh.co
+  - bnbstatic.com
+  - bnbzh.ac
+  - bntrace.com
+  - saasexch.cc
+  - saasexch.com
+  - appsflayer.com
+  - okx.com
+  - okex.com
+  - oklink.com
+  - okx.me
+  - bytick.com
+  - bitget.com
+  - bitgetapps.com
+  - gate.io
+  - gateio.ws
+  - gateio.io
+  - htx.com
+  - huobi.com
+  - huobi.io
+  - huobiasia.com
+  - kucoin.com
+  - kumex.com
+  - kraken.com
+  - krakenfx.com
+  - coinbase.com
+  - coinbaseexchange.com
+  - crypto.com
+  - bitfinex.com
+  - bitstamp.net
+  - gemini.com
+  - deribit.com
+  - backpack.exchange
+  - ourbit.com
+  - bitmart.com
+  - bingx.com
+  - bitunix.com
+  - coinex.com
+  - xt.com
+  - lbank.com
+  - lbank.info
+  - digifinex.com
+  - ascendex.com
+  - bitrue.com
+  - whitebit.com
+  - phemex.com
+  - bitmex.com
+  - poloniex.com
+  - bittrex.com
+  - upbit.com
+  - bithumb.com
+  - coinone.co.kr
+  - bitflyer.com
+  - bitbank.cc
+  - zaif.jp
+  - hashkey.com
+  - osl.com
+  - hyperliquid.xyz
+  - dydx.trade
+  - dydx.exchange
+  - uniswap.org
+  - pancakeswap.finance
+  - jup.ag
+  - jupiter.ag
+  - 1inch.io
+  - raydium.io
+  - orca.so
+  - aerodrome.finance
+  - curve.fi
+  - aave.com
+  - lido.fi
+  - coingecko.com
+  - coinmarketcap.com
+  - dexscreener.com
+  - dextools.io
+  - birdeye.so
+  - arkhamintelligence.com
+  - debank.com
+  - defillama.com
+  - llama.fi
+  - etherscan.io
+  - bscscan.com
+  - arbiscan.io
+  - polygonscan.com
+  - solscan.io
+  - basescan.org
+  - glassnode.com
+  - cryptoquant.com
+  - coinglass.com
+  - tokenunlocks.com
+  - binance.vision
+  - huobi.pro
+  - 1inch.dev
+  # 2026-10-17 新增：openmarket.xyz（行情工具，blackmatrix7 远程规则未覆盖）
+  - openmarket.xyz
+
 domain_set:
-- cursor.com
-- wloc-spoofer.wloc.workers.dev
+  - cursor.com
+  - wloc-spoofer.wloc.workers.dev
