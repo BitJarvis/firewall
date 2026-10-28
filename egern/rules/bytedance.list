@@ -2,6 +2,7 @@
 # QX HOST-SUFFIX -> DOMAIN-SUFFIX，IP-CIDR 保留原样；策略由主配置 rule_set 定为 DIRECT
 # 已排除海外域名（走 TikTok/美国节点，不走 DIRECT）：tiktokcdn.com, topbuzzcdn.com, byteoversea.com
 # 已丢弃无效项：center.html
+# 2026-10-29 补：ACL4SSR ByteDance 44 条中新增 11 个域（feelgood/toutiao13/toutiaohao/toutiaocdn/toutiaopage/wukong/zjbyte/bytedns/kspkg），其余与 fmz 版重复
 DOMAIN-SUFFIX,365yg.com
 DOMAIN-SUFFIX,activity04.com
 DOMAIN-SUFFIX,amemv.com
@@ -127,3 +128,14 @@ IP-CIDR,220.243.190.72/32
 IP-CIDR,220.243.190.73/32
 IP-CIDR,220.243.190.74/32
 IP-CIDR,220.243.190.79/32
+DOMAIN-SUFFIX,bytedns.net
+DOMAIN-SUFFIX,feelgood.cn
+DOMAIN-SUFFIX,kspkg.com
+DOMAIN-SUFFIX,toutiao13.com
+DOMAIN-SUFFIX,toutiaocdn.com
+DOMAIN-SUFFIX,toutiaocdn.net
+DOMAIN-SUFFIX,toutiaohao.com
+DOMAIN-SUFFIX,toutiaohao.net
+DOMAIN-SUFFIX,toutiaopage.com
+DOMAIN-SUFFIX,wukong.com
+DOMAIN-SUFFIX,zjbyte.com
