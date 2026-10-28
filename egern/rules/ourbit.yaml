@@ -1,0 +1,9 @@
+# Ourbit App 单独规则（Egern）
+# 来源：Proxyman 抓包 2026-10-28 23:19-23:23，共 80 条
+# 已排除：阿里云日志域 ourbit.ap-southeast-1.log.aliyuncs.com（用户要求不加）
+# 未收入：EngageLab / AppsFlyer / Sentry 等第三方 SDK 域、系统域及其他 App 域
+domain_suffix_set:
+  - ourbit.com
+  - seebestfirst.com
+  - seebestsecond.com
+  - willbebest.com
