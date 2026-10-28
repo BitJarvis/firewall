@@ -7,6 +7,8 @@ payload:
   - DOMAIN-KEYWORD,greentreeone
   - DOMAIN-KEYWORD,coldbookfly
   - DOMAIN-KEYWORD,mexc
+  - DOMAIN-KEYWORD,ethenapay-api
+  - DOMAIN-KEYWORD,sumsub
   - DOMAIN-SUFFIX,oracle.com
   - DOMAIN-SUFFIX,manus.im
   - DOMAIN-SUFFIX,linear.app
@@ -135,5 +137,18 @@ payload:
   - DOMAIN-SUFFIX,appmmo.com
   - DOMAIN-SUFFIX,typora.io
   - DOMAIN-SUFFIX,muse.ai
+  - DOMAIN-SUFFIX,huangguo.com
+  - DOMAIN-SUFFIX,walletconnect.com
+  - DOMAIN-SUFFIX,wise.com
+  - DOMAIN-SUFFIX,awsapps.com
+  - DOMAIN-SUFFIX,ldstatic.com
+  - DOMAIN-SUFFIX,zlibrary-east.se
+  - DOMAIN-SUFFIX,pionex.com
+  - DOMAIN-SUFFIX,v2ex.com
+  - DOMAIN-SUFFIX,zox.show
+  - DOMAIN-SUFFIX,link.com
+  - DOMAIN-SUFFIX,bad.news
+  - DOMAIN-SUFFIX,ethena.fi
+  - DOMAIN-SUFFIX,mlh.io
   - DOMAIN,cursor.com
   - DOMAIN,wloc-spoofer.wloc.workers.dev

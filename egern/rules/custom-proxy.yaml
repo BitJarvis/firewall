@@ -6,6 +6,9 @@ domain_keyword_set:
   - greentreeone
   - coldbookfly
   - mexc
+  # 2026-10-28 归档：从主配置内联规则移入（主配置内联在前，仍优先）
+  - ethenapay-api
+  - sumsub
 
 domain_suffix_set:
   - oracle.com
@@ -138,6 +141,19 @@ domain_suffix_set:
   - appmmo.com
   - typora.io
   - muse.ai
+  - huangguo.com
+  - walletconnect.com
+  - wise.com
+  - awsapps.com
+  - ldstatic.com
+  - zlibrary-east.se
+  - pionex.com
+  - v2ex.com
+  - zox.show
+  - link.com
+  - bad.news
+  - ethena.fi
+  - mlh.io
 
 domain_set:
   - cursor.com
