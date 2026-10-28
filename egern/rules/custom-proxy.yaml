@@ -134,6 +134,10 @@ domain_suffix_set:
   - 1inch.dev
   # 2026-10-17 新增：openmarket.xyz（行情工具，blackmatrix7 远程规则未覆盖）
   - openmarket.xyz
+  # 2026-10-28 归档：从主配置内联规则移入（原策略均为自定义代理，行为不变）
+  - appmmo.com
+  - typora.io
+  - muse.ai
 
 domain_set:
   - cursor.com

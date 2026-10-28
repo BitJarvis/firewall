@@ -132,5 +132,8 @@ payload:
   - DOMAIN-SUFFIX,huobi.pro
   - DOMAIN-SUFFIX,1inch.dev
   - DOMAIN-SUFFIX,openmarket.xyz
+  - DOMAIN-SUFFIX,appmmo.com
+  - DOMAIN-SUFFIX,typora.io
+  - DOMAIN-SUFFIX,muse.ai
   - DOMAIN,cursor.com
   - DOMAIN,wloc-spoofer.wloc.workers.dev

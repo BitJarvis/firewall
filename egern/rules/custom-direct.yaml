@@ -1,2 +1,6 @@
 domain_keyword_set:
 - cn-ssl
+
+domain_suffix_set:
+  # 2026-10-28 归档：从主配置内联规则移入（原策略 DIRECT）
+  - local
