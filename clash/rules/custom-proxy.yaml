@@ -8,8 +8,6 @@ payload:
   - DOMAIN-KEYWORD,coldbookfly
   - DOMAIN-KEYWORD,mexc
   - DOMAIN-KEYWORD,ethenapay-api
-  - DOMAIN-KEYWORD,sumsub
-  - DOMAIN-SUFFIX,oracle.com
   - DOMAIN-SUFFIX,manus.im
   - DOMAIN-SUFFIX,linear.app
   - DOMAIN-SUFFIX,metaaivm.com
@@ -139,7 +137,6 @@ payload:
   - DOMAIN-SUFFIX,muse.ai
   - DOMAIN-SUFFIX,huangguo.com
   - DOMAIN-SUFFIX,walletconnect.com
-  - DOMAIN-SUFFIX,wise.com
   - DOMAIN-SUFFIX,awsapps.com
   - DOMAIN-SUFFIX,ldstatic.com
   - DOMAIN-SUFFIX,zlibrary-east.se

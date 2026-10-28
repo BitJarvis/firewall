@@ -8,10 +8,8 @@ domain_keyword_set:
   - mexc
   # 2026-10-28 归档：从主配置内联规则移入（主配置内联在前，仍优先）
   - ethenapay-api
-  - sumsub
 
 domain_suffix_set:
-  - oracle.com
   - manus.im
   - linear.app
   - metaaivm.com
@@ -143,7 +141,6 @@ domain_suffix_set:
   - muse.ai
   - huangguo.com
   - walletconnect.com
-  - wise.com
   - awsapps.com
   - ldstatic.com
   - zlibrary-east.se
