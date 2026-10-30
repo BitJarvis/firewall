@@ -1,4 +1,4 @@
-#!name=番茄小说（原版修正 v4）
+#!name=番茄小说（原版修正 v5）
 #!desc=番茄小说广告屏蔽（zqzess v3.1 原版，仅删除 dig.bdurl.net 一条：拦它会影响听书功能/进度保存，见原仓库 issue #66；其余内容与原版完全一致；v2 再撤三处会误伤听书播放的项，见文件内 [v2删除] 标注）
 #!category=zqzess
 # 修正版说明（2026-10-30，BitJarvis/firewall）：基于 zqzess/rule_for_quantumultX 的 Surge/Module/FanQieNovel.sgmodule 原文。
@@ -16,8 +16,8 @@
 DOMAIN,p6-ad-sign.byteimg.com,REJECT
 DOMAIN,p9-ad-sign.byteimg.com,REJECT
 # DOMAIN-SUFFIX,byteimg.com,DIRECT
-DOMAIN,i.snssdk.com,REJECT
-DOMAIN,i-lq.snssdk.com,REJECT
+# [v5放行] DOMAIN,i.snssdk.com,REJECT —— snssdk 通用内容/API 网关，播放器依赖，见文件头
+# [v5放行] DOMAIN,i-lq.snssdk.com,REJECT —— snssdk 通用内容/API 网关，播放器依赖，见文件头
 # [修正版删除] DOMAIN,dig.bdurl.net,REJECT —— 拦它会让听书进度保存不了（zqzess issue #66），故注释掉
 # [v2删除] DOMAIN,imapi3-normal-lf.zijieapi.com,DIRECT —— 那是给整段封 zijieapi 打的补丁，现已不需要
 # [v2替换] 原版 DOMAIN-KEYWORD,zijieapi,REJECT 整段封锁会误伤正文接口，换成精确广告子域：

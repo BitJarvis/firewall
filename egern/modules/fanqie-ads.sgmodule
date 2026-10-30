@@ -1,4 +1,4 @@
-#!name=番茄小说去广告（修正版 v4）
+#!name=番茄小说去广告（修正版 v5）
 #!desc=去开屏/章末/听书页广告。基于 zqzess v3.1 + 可莉版清洗：删 dig.bdurl.net（拦了会坏听书，见 zqzess issue #66）、删整段 zijieapi/bytedance.com 封锁、删 security.snssdk.com（保抖音号登录）
 #!category=去广告
 
@@ -7,8 +7,8 @@ DOMAIN,p3-ad-sign.byteimg.com,REJECT
 DOMAIN,p6-ad-sign.byteimg.com,REJECT
 DOMAIN,p9-ad-sign.byteimg.com,REJECT
 DOMAIN,p3-developer.bytemaimg.com,REJECT
-DOMAIN,i.snssdk.com,REJECT
-DOMAIN,i-lq.snssdk.com,REJECT
+# [v5放行] DOMAIN,i.snssdk.com,REJECT —— snssdk 通用内容/API 网关，播放器依赖，见文件头
+# [v5放行] DOMAIN,i-lq.snssdk.com,REJECT —— snssdk 通用内容/API 网关，播放器依赖，见文件头
 # [v4放行] DOMAIN,effect.snssdk.com,REJECT —— 配置/监控/安全类，非广告下发
 # [v4放行] DOMAIN,vas.snssdk.com,REJECT —— 配置/监控/安全类，非广告下发
 # [v4放行] DOMAIN,mcs.snssdk.com,REJECT —— 配置/监控/安全类，非广告下发
@@ -16,7 +16,7 @@ DOMAIN,i-lq.snssdk.com,REJECT
 # [v4放行] DOMAIN,tnc3-aliec2.snssdk.com,REJECT —— 配置/监控/安全类，非广告下发
 DOMAIN,ad.toutiao.com,REJECT
 DOMAIN,zlink.toutiao.com,REJECT
-DOMAIN,ichannel.snssdk.com,REJECT
+# [v5放行] DOMAIN,ichannel.snssdk.com,REJECT —— snssdk 通用内容/API 网关，播放器依赖，见文件头
 DOMAIN,activity-ag.awemeughun.com,REJECT
 DOMAIN,api.iegadp.qq.com,REJECT
 DOMAIN,apd-pcdnwxlogin.teg.tencent-cloud.net,REJECT

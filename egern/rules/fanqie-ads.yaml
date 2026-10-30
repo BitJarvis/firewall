@@ -14,6 +14,9 @@
 #   zqzess 仓库 issue #66（2026-02-08）已证实：拦 dig.bdurl.net 会影响听书功能，
 #   报告者给的解法就是去掉这行/改 DIRECT。bdurl/zjurl 是字节的动态链接解析服务，
 #   听书的音频地址解析也走它，不能当普通短链广告域拦。用户实测中招后删除。
+# v5（2026-10-30）：再放行 i.snssdk.com / i-lq.snssdk.com / ichannel.snssdk.com——
+#   snssdk 的 i/is/ichannel 是字节通用内容/API 网关（is 是头条内容推荐接口），广告只是搭载，
+#   多份白名单专门放行 i.snssdk.com 保其他字节 App 功能；番茄播放器同样依赖它。
 # v4（2026-10-30，播放优先版）：只拦「广告下发链路」，其余全部放行——
 #   配置下发（tnc/security/mssdk/gecko/vcs/abtest）、监控日志上报（timon/mcs/mon/applog/toblog）、
 #   消息同步（easemob msync）、增值/特效（vas/effect）、整段后缀（byteorge/bytegoofy/bytedance）、
@@ -46,11 +49,8 @@ domain_set:
   - p6-ad-sign.byteimg.com
   - p9-ad-sign.byteimg.com
   - p3-developer.bytemaimg.com
-  - i.snssdk.com
-  - i-lq.snssdk.com
   - ad.toutiao.com
   - zlink.toutiao.com
-  - ichannel.snssdk.com
   - activity-ag.awemeughun.com
   - api.iegadp.qq.com
   - apd-pcdnwxlogin.teg.tencent-cloud.net
