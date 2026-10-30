@@ -63,7 +63,7 @@ domain_set:
   # 广告素材 CDN
   - sf3-ttcdn-tos.pstatp.com
   # 西瓜/番茄视频广告
-  - v6-novelapp.ixigua.com
+  # （v6-novelapp.ixigua.com 已于 v2 删除：novelapp 是正文内容域，拦了听书下一章不播放）
   # UG SDK
   - zlink.ugsdk.cn
   # 电商广告图片
@@ -115,7 +115,7 @@ domain_suffix_set:
 domain_wildcard_set:
   # 西瓜视频广告分发（上游原文 DOMAIN,*default.ixigua.com / *novelapp.ixigua.com）
   - "*default.ixigua.com"
-  - "*novelapp.ixigua.com"
+  # "*novelapp.ixigua.com" 已于 v2 删除：同上，正文内容域不拦
   # zijieapi 广告子域的地区变体（-hl/-lf/-lq，实测 DNS 清单证实存在，精确名收不全）
   - "ads*-normal-*.zijieapi.com"
   - "minigame*-normal-*.zijieapi.com"

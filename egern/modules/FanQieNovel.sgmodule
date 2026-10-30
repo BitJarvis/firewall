@@ -1,7 +1,12 @@
-#!name=番茄小说（原版修正）
-#!desc=番茄小说广告屏蔽（zqzess v3.1 原版，仅删除 dig.bdurl.net 一条：拦它会影响听书功能/进度保存，见原仓库 issue #66；其余内容与原版完全一致）
+#!name=番茄小说（原版修正 v2）
+#!desc=番茄小说广告屏蔽（zqzess v3.1 原版，仅删除 dig.bdurl.net 一条：拦它会影响听书功能/进度保存，见原仓库 issue #66；其余内容与原版完全一致；v2 再撤三处会误伤听书播放的项，见文件内 [v2删除] 标注）
 #!category=zqzess
-# 修正版说明（2026-10-30，BitJarvis/firewall）：基于 zqzess/rule_for_quantumultX 的 Surge/Module/FanQieNovel.sgmodule 原文，仅改这一处，其余规则/重写/MITM 未动。
+# 修正版说明（2026-10-30，BitJarvis/firewall）：基于 zqzess/rule_for_quantumultX 的 Surge/Module/FanQieNovel.sgmodule 原文。
+# v1 改动：注释 dig.bdurl.net（坏听书进度，issue #66）。
+# v2 改动（用户实测原版与 v1 都会让听书下一章不播放）：撤掉三类正文媒体相关项——
+#   ① ixigua 的 novelapp 内容域两条；② fqnovelvod/snssdk 的 video 播放路径重写两条；
+#   ③ DOMAIN-KEYWORD,zijieapi 整段封锁，换成精确广告子域（与 egern/rules/fanqie-ads.yaml 同口径）。
+# 其余规则/重写/MITM 与原版一致。
 
 [Rule]
 # 番茄小说 version = 3.1
@@ -11,8 +16,23 @@ DOMAIN,p9-ad-sign.byteimg.com,REJECT
 DOMAIN,i.snssdk.com,REJECT
 DOMAIN,i-lq.snssdk.com,REJECT
 # [修正版删除] DOMAIN,dig.bdurl.net,REJECT —— 拦它会让听书进度保存不了（zqzess issue #66），故注释掉
-DOMAIN,imapi3-normal-lf.zijieapi.com,DIRECT
-DOMAIN-KEYWORD,zijieapi,REJECT
+# [v2删除] DOMAIN,imapi3-normal-lf.zijieapi.com,DIRECT —— 那是给整段封 zijieapi 打的补丁，现已不需要
+# [v2替换] 原版 DOMAIN-KEYWORD,zijieapi,REJECT 整段封锁会误伤正文接口，换成精确广告子域：
+DOMAIN,ads3-normal.zijieapi.com,REJECT
+DOMAIN,ads5-normal.zijieapi.com,REJECT
+DOMAIN,minigame3-normal.zijieapi.com,REJECT
+DOMAIN,minigame5-normal.zijieapi.com,REJECT
+DOMAIN,gecko3.zijieapi.com,REJECT
+DOMAIN,gecko5.zijieapi.com,REJECT
+DOMAIN,mssdk.zijieapi.com,REJECT
+DOMAIN,timon.zijieapi.com,REJECT
+DOMAIN,vcs.zijieapi.com,REJECT
+DOMAIN,ma.zijieapi.com,REJECT
+DOMAIN,feedback-c.zijieapi.com,REJECT
+DOMAIN,abtest3-misc.zijieapi.com,REJECT
+DOMAIN,ads*-normal-*.zijieapi.com,REJECT
+DOMAIN,minigame*-normal-*.zijieapi.com,REJECT
+DOMAIN,gecko*.zijieapi.com,REJECT
 # DOMAIN,ads3-normal-lq.zijieapi.com,REJECT
 # DOMAIN,ads5-normal-lq.zijieapi.com,REJECT
 # DOMAIN,polaris3-normal-lq.zijieapi.com,REJECT
@@ -35,8 +55,8 @@ DOMAIN-SUFFIX,pglstatp-toutiao.com,REJECT
 # DOMAIN,sf3-be-pack.pglstatp-toutiao.com,REJECT
 
 DOMAIN,*default.ixigua.com,REJECT
-DOMAIN,v6-novelapp.ixigua.com,REJECT
-DOMAIN,*novelapp.ixigua.com,REJECT
+# [v2删除] DOMAIN,v6-novelapp.ixigua.com,REJECT —— novelapp 是正文音频/视频内容域，拦了听书下一章不播放
+# [v2删除] DOMAIN,*novelapp.ixigua.com,REJECT —— 同上
 # DOMAIN,v3-default.ixigua.com,REJECT
 # DOMAIN,v9-default.ixigua.com,REJECT
 # DOMAIN,v6-default.ixigua.com,REJECT
@@ -70,14 +90,14 @@ URL-REGEX,^http:\/\/.+\.byteimg\.com\/web\.business\.image,REJECT
 ^https?:\/\/.+\.byteimg.com/tos-cn-i-1yzifmftcy\/(.+)-jpeg\.jpeg - reject
 ^https?:\/\/.+\.pstatp\.com\/obj\/mosaic-legacy\/.+\?from\=ad - reject
 ^https?:\/\/.+\.pstatp\.com\/bytecom\/resource\/track_log\/src\/.+ - reject
-^https?:\/\/.+\.snssdk\.com\/video\/play\/1\/toutiao\/.+\/mp4 - reject
+# [v2删除] snssdk 的 video/play 播放接口重写 —— ttplayer 播正文音频也走播放接口，拦了下一章不播放
 ^https?:\/\/.+\.snssdk.com\/api\/ad\/.+ - reject
 # 下面两条来自他人,暂不知是哪个app
 ^https?:\/\/.+?\.snssdk\.com\/motor\/operation\/activity\/display\/config\/V2\/ - reject
 
 ^https?:\/\/.+\.(pglstatp-toutiao|pstatp)\.com\/(ad-app-package|ad)\/.+ - reject
 ^https?:\/\/adim\.pinduoduo\.com\/.+\/toutiao\?.+ - reject
-^https?:\/\/v(\d)+-novelapp\.fqnovelvod\.com\/.+\/video\/.+ - reject
+# [v2删除] fqnovelvod 的 novelapp/video 路径重写 —— 那是正文媒体 CDN 路径，同上
 
 [MITM]
 hostname = %APPEND% *.pangolin-sdk-toutiao,*.pangolin-sdk-toutiao.*,*.pstatp.com,*.pstatp.com.*,*.pglstatp-toutiao.com.*,*.pglstatp-toutiao.com,gurd.snssdk.com,gurd.snssdk.com.*,*default.ixigua.com,adim.pinduoduo.com,*.fqnovelvod.com
