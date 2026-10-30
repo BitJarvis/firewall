@@ -1,4 +1,4 @@
-#!name=番茄小说（原版修正 v2）
+#!name=番茄小说（原版修正 v3）
 #!desc=番茄小说广告屏蔽（zqzess v3.1 原版，仅删除 dig.bdurl.net 一条：拦它会影响听书功能/进度保存，见原仓库 issue #66；其余内容与原版完全一致；v2 再撤三处会误伤听书播放的项，见文件内 [v2删除] 标注）
 #!category=zqzess
 # 修正版说明（2026-10-30，BitJarvis/firewall）：基于 zqzess/rule_for_quantumultX 的 Surge/Module/FanQieNovel.sgmodule 原文。
@@ -7,6 +7,8 @@
 #   ① ixigua 的 novelapp 内容域两条；② fqnovelvod/snssdk 的 video 播放路径重写两条；
 #   ③ DOMAIN-KEYWORD,zijieapi 整段封锁，换成精确广告子域（与 egern/rules/fanqie-ads.yaml 同口径）。
 # 其余规则/重写/MITM 与原版一致。
+# v3 改动（2026-10-30，用户关模块抓日志实证）：再删 is.snssdk.com 与 ma.zijieapi.com——
+#   两者都在正常听书的请求里出现（is.snssdk.com 单次回了 148KB 数据），不是纯广告域。
 
 [Rule]
 # 番茄小说 version = 3.1
@@ -27,7 +29,7 @@ DOMAIN,gecko5.zijieapi.com,REJECT
 DOMAIN,mssdk.zijieapi.com,REJECT
 DOMAIN,timon.zijieapi.com,REJECT
 DOMAIN,vcs.zijieapi.com,REJECT
-DOMAIN,ma.zijieapi.com,REJECT
+# [v3删除] DOMAIN,ma.zijieapi.com,REJECT —— 出现在用户听书请求清单里，先放行保播放
 DOMAIN,feedback-c.zijieapi.com,REJECT
 DOMAIN,abtest3-misc.zijieapi.com,REJECT
 DOMAIN,ads*-normal-*.zijieapi.com,REJECT
@@ -42,7 +44,7 @@ DOMAIN,mcs.snssdk.com,REJECT
 DOMAIN,tnc3-alisc1.snssdk.com,REJECT
 DOMAIN,security-lq.snssdk.com,REJECT
 DOMAIN,tnc3-aliec2.snssdk.com,REJECT
-DOMAIN,is.snssdk.com,REJECT
+# [v3删除] DOMAIN,is.snssdk.com,REJECT —— 正常听书时它回了 148KB 数据，疑似播放/章节数据通道
 
 DOMAIN,msync-im1-vip6-std.easemob.com,REJECT
 

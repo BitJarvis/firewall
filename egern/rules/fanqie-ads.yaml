@@ -25,6 +25,8 @@
 #     番茄用抖音号登录的话封了会登不上 → 未收；security-lq.snssdk.com 同理未收
 #   - DOMAIN,imapi3-normal-lf.zijieapi.com,DIRECT（zqzess）：那是给整段封 zijieapi 打的补丁，
 #     本文件不整段封，所以不需要这条放行
+# v3 删除（2026-10-30，用户抓日志实证）：is.snssdk.com / is-lq.snssdk.com / ma.zijieapi.com
+#   三者都出现在正常听书请求里（is 单次回 148KB 数据），不是纯广告域，放行保播放。
 # 保留存疑项（出问题优先删这几条）：
 #   - ip_cidr_set 的 6 个 /32：上游给的广告 IP，IP 可能被运营商回收复用，误伤时整段删掉即可
 #   - msync-im1-vip6-std.easemob.com：环信 IM 的同步域，若番茄私信/消息异常先删它
@@ -43,8 +45,6 @@ domain_set:
   # snssdk 广告与埋点
   - i.snssdk.com
   - i-lq.snssdk.com
-  - is.snssdk.com
-  - is-lq.snssdk.com
   - effect.snssdk.com
   - vas.snssdk.com
   - mcs.snssdk.com
@@ -101,7 +101,6 @@ domain_set:
   - mssdk.zijieapi.com
   - timon.zijieapi.com
   - vcs.zijieapi.com
-  - ma.zijieapi.com
   - feedback-c.zijieapi.com
   - abtest3-misc.zijieapi.com
 
