@@ -1,4 +1,4 @@
-#!name=番茄小说（原版修正 v3）
+#!name=番茄小说（原版修正 v4）
 #!desc=番茄小说广告屏蔽（zqzess v3.1 原版，仅删除 dig.bdurl.net 一条：拦它会影响听书功能/进度保存，见原仓库 issue #66；其余内容与原版完全一致；v2 再撤三处会误伤听书播放的项，见文件内 [v2删除] 标注）
 #!category=zqzess
 # 修正版说明（2026-10-30，BitJarvis/firewall）：基于 zqzess/rule_for_quantumultX 的 Surge/Module/FanQieNovel.sgmodule 原文。
@@ -7,6 +7,7 @@
 #   ① ixigua 的 novelapp 内容域两条；② fqnovelvod/snssdk 的 video 播放路径重写两条；
 #   ③ DOMAIN-KEYWORD,zijieapi 整段封锁，换成精确广告子域（与 egern/rules/fanqie-ads.yaml 同口径）。
 # 其余规则/重写/MITM 与原版一致。
+# v4 改动（播放优先）：放行配置下发/监控上报/安全指纹类域名与全部 IP 条目，只保留广告下发链路，逐条见 [v4放行] 标注。
 # v3 改动（2026-10-30，用户关模块抓日志实证）：再删 is.snssdk.com 与 ma.zijieapi.com——
 #   两者都在正常听书的请求里出现（is.snssdk.com 单次回了 148KB 数据），不是纯广告域。
 
@@ -24,29 +25,29 @@ DOMAIN,ads3-normal.zijieapi.com,REJECT
 DOMAIN,ads5-normal.zijieapi.com,REJECT
 DOMAIN,minigame3-normal.zijieapi.com,REJECT
 DOMAIN,minigame5-normal.zijieapi.com,REJECT
-DOMAIN,gecko3.zijieapi.com,REJECT
-DOMAIN,gecko5.zijieapi.com,REJECT
-DOMAIN,mssdk.zijieapi.com,REJECT
-DOMAIN,timon.zijieapi.com,REJECT
-DOMAIN,vcs.zijieapi.com,REJECT
+# [v4放行] DOMAIN,gecko3.zijieapi.com,REJECT —— 配置/监控/安全类，非广告下发
+# [v4放行] DOMAIN,gecko5.zijieapi.com,REJECT —— 配置/监控/安全类，非广告下发
+# [v4放行] DOMAIN,mssdk.zijieapi.com,REJECT —— 配置/监控/安全类，非广告下发
+# [v4放行] DOMAIN,timon.zijieapi.com,REJECT —— 配置/监控/安全类，非广告下发
+# [v4放行] DOMAIN,vcs.zijieapi.com,REJECT —— 配置/监控/安全类，非广告下发
 # [v3删除] DOMAIN,ma.zijieapi.com,REJECT —— 出现在用户听书请求清单里，先放行保播放
-DOMAIN,feedback-c.zijieapi.com,REJECT
-DOMAIN,abtest3-misc.zijieapi.com,REJECT
+# [v4放行] DOMAIN,feedback-c.zijieapi.com,REJECT —— 配置/监控/安全类，非广告下发
+# [v4放行] DOMAIN,abtest3-misc.zijieapi.com,REJECT —— 配置/监控/安全类，非广告下发
 DOMAIN,ads*-normal-*.zijieapi.com,REJECT
 DOMAIN,minigame*-normal-*.zijieapi.com,REJECT
-DOMAIN,gecko*.zijieapi.com,REJECT
+# [v4放行] DOMAIN,gecko*.zijieapi.com,REJECT —— 配置下发类（gecko/日志/监控）
 # DOMAIN,ads3-normal-lq.zijieapi.com,REJECT
 # DOMAIN,ads5-normal-lq.zijieapi.com,REJECT
 # DOMAIN,polaris3-normal-lq.zijieapi.com,REJECT
 DOMAIN,activity-ag.awemeughun.com,REJECT
 
-DOMAIN,mcs.snssdk.com,REJECT
-DOMAIN,tnc3-alisc1.snssdk.com,REJECT
-DOMAIN,security-lq.snssdk.com,REJECT
-DOMAIN,tnc3-aliec2.snssdk.com,REJECT
+# [v4放行] DOMAIN,mcs.snssdk.com,REJECT —— 配置/监控/安全类，非广告下发
+# [v4放行] DOMAIN,tnc3-alisc1.snssdk.com,REJECT —— 配置/监控/安全类，非广告下发
+# [v4放行] DOMAIN,security-lq.snssdk.com,REJECT —— 配置/监控/安全类，非广告下发
+# [v4放行] DOMAIN,tnc3-aliec2.snssdk.com,REJECT —— 配置/监控/安全类，非广告下发
 # [v3删除] DOMAIN,is.snssdk.com,REJECT —— 正常听书时它回了 148KB 数据，疑似播放/章节数据通道
 
-DOMAIN,msync-im1-vip6-std.easemob.com,REJECT
+# [v4放行] DOMAIN,msync-im1-vip6-std.easemob.com,REJECT —— 配置/监控/安全类，非广告下发
 
 DOMAIN,apd-pcdnwxlogin.teg.tencent-cloud.net,REJECT
 DOMAIN,api.iegadp.qq.com,REJECT
@@ -63,16 +64,16 @@ DOMAIN,*default.ixigua.com,REJECT
 # DOMAIN,v9-default.ixigua.com,REJECT
 # DOMAIN,v6-default.ixigua.com,REJECT
 
-DOMAIN-SUFFIX,byteorge.com,REJECT
-DOMAIN-SUFFIX,bytegoofy.com,REJECT
-DOMAIN-SUFFIX,bytedance.com,REJECT
+# [v4放行] DOMAIN-SUFFIX,byteorge.com,REJECT —— 整段后缀过宽，非广告下发
+# [v4放行] DOMAIN-SUFFIX,bytegoofy.com,REJECT —— 整段后缀过宽，非广告下发
+# [v4放行] DOMAIN-SUFFIX,bytedance.com,REJECT —— 整段后缀过宽，非广告下发
 
-IP-CIDR,49.71.37.101/32,REJECT,no-resolve
-IP-CIDR,117.71.105.23/32,REJECT,no-resolve
-IP-CIDR,218.94.207.205/32,REJECT,no-resolve
-IP-CIDR,117.92.229.188/32,REJECT,no-resolve
-IP-CIDR,101.36.166.16/32,REJECT,no-resolve
-IP-CIDR,180.96.2.114/32,REJECT,no-resolve
+# [v4放行] IP-CIDR,49.71.37.101/32,REJECT,no-resolve —— 经查为 abtest/mssdk/tnc 配置节点 IP，非广告
+# [v4放行] IP-CIDR,117.71.105.23/32,REJECT,no-resolve —— 经查为 abtest/mssdk/tnc 配置节点 IP，非广告
+# [v4放行] IP-CIDR,218.94.207.205/32,REJECT,no-resolve —— 经查为 abtest/mssdk/tnc 配置节点 IP，非广告
+# [v4放行] IP-CIDR,117.92.229.188/32,REJECT,no-resolve —— 经查为 abtest/mssdk/tnc 配置节点 IP，非广告
+# [v4放行] IP-CIDR,101.36.166.16/32,REJECT,no-resolve —— 经查为 abtest/mssdk/tnc 配置节点 IP，非广告
+# [v4放行] IP-CIDR,180.96.2.114/32,REJECT,no-resolve —— 经查为 abtest/mssdk/tnc 配置节点 IP，非广告
 
 URL-REGEX,*-default.ixigua.com,REJECT
 # URL-REGEX,.+web\.business\.image,REJECT

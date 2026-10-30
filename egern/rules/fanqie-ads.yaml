@@ -14,6 +14,11 @@
 #   zqzess 仓库 issue #66（2026-02-08）已证实：拦 dig.bdurl.net 会影响听书功能，
 #   报告者给的解法就是去掉这行/改 DIRECT。bdurl/zjurl 是字节的动态链接解析服务，
 #   听书的音频地址解析也走它，不能当普通短链广告域拦。用户实测中招后删除。
+# v4（2026-10-30，播放优先版）：只拦「广告下发链路」，其余全部放行——
+#   配置下发（tnc/security/mssdk/gecko/vcs/abtest）、监控日志上报（timon/mcs/mon/applog/toblog）、
+#   消息同步（easemob msync）、增值/特效（vas/effect）、整段后缀（byteorge/bytegoofy/bytedance）、
+#   以及 6 个 IP（查证为 abtest/mssdk/tnc 的配置节点 IP）统统删除。
+#   原则：拦「来取广告的」，不拦「往回传数据的」和「下发配置的」，后两类误伤播放的风险最高。
 # 本文件只做分流层 REJECT（域名/IP）；章末广告的 URL Rewrite 不在 rule_set 能力内，见文末说明。
 #
 # 已剔除的上游误伤项（不要加回来）：
@@ -37,103 +42,42 @@
 #    放在它后面将永远命中不到 REJECT。
 
 domain_set:
-  # 广告签名/素材（byteimg）
   - p3-ad-sign.byteimg.com
   - p6-ad-sign.byteimg.com
   - p9-ad-sign.byteimg.com
   - p3-developer.bytemaimg.com
-  # snssdk 广告与埋点
   - i.snssdk.com
   - i-lq.snssdk.com
-  - effect.snssdk.com
-  - vas.snssdk.com
-  - mcs.snssdk.com
-  - tnc3-alisc1.snssdk.com
-  - tnc3-aliec2.snssdk.com
-  # 短链/跳转
   - ad.toutiao.com
   - zlink.toutiao.com
   - ichannel.snssdk.com
-  # 字节舞动活动广告
   - activity-ag.awemeughun.com
-  # 第三方广告 SDK
   - api.iegadp.qq.com
   - apd-pcdnwxlogin.teg.tencent-cloud.net
-  - msync-im1-vip6-std.easemob.com
-  # 广告素材 CDN
   - sf3-ttcdn-tos.pstatp.com
-  # 西瓜/番茄视频广告
-  # （v6-novelapp.ixigua.com 已于 v2 删除：novelapp 是正文内容域，拦了听书下一章不播放）
-  # UG SDK
   - zlink.ugsdk.cn
-  # 电商广告图片
   - ecombdimg.com
-  # 监控/埋点补充
-  - mon.snssdk.com
-  - mon.zijieapi.com
-  - toblog.ctobsnssdk.com
-  - mssdk.volces.com
   - praisewindow.ugsdk.cn
-  # 头条云监控/埋点
-  - mon.toutiaocloud.com
-  - mon.toutiaocloud.net
-  # 直播推广（番茄内嵌直播/短剧引流）
   - webcast-open.douyin.com
   - p11-webcast-sign.douyinpic.com
   - p3-webcast-sign.douyinpic.com
   - lf-normal-gr-sourcecdn.bytegecko.com
   - lf-webcast-gr-sourcecdn.bytegecko.com
-  # 番茄自身日志/监控
-  - log3-applog.fqnovel.com
-  - log5-applog.fqnovel.com
-  - rtlog3-applog.fqnovel.com
-  - rtlog5-applog.fqnovel.com
-  - mon3-misc.fqnovel.com
-  - mon11-misc.fqnovel.com
-  - mon11-misc-lq.fqnovel.com
-  # zijieapi 精确广告子域（替代上游的整段 zijieapi 封锁）
   - ads3-normal.zijieapi.com
   - ads5-normal.zijieapi.com
   - minigame3-normal.zijieapi.com
   - minigame5-normal.zijieapi.com
-  - gecko3.zijieapi.com
-  - gecko5.zijieapi.com
-  - mssdk.zijieapi.com
-  - timon.zijieapi.com
-  - vcs.zijieapi.com
-  - feedback-c.zijieapi.com
-  - abtest3-misc.zijieapi.com
 
 domain_suffix_set:
-  # 穿山甲广告素材
   - pglstatp-toutiao.com
-  # 穿山甲广告 SDK 整域（api-access/log-api 等子域均为广告 SDK 接口）
   - pangolin-sdk-toutiao.com
   - pangolin-sdk-toutiao1.com
 
 domain_wildcard_set:
-  # 西瓜视频广告分发（上游原文 DOMAIN,*default.ixigua.com / *novelapp.ixigua.com）
   - "*default.ixigua.com"
-  # "*novelapp.ixigua.com" 已于 v2 删除：同上，正文内容域不拦
-  # zijieapi 广告子域的地区变体（-hl/-lf/-lq，实测 DNS 清单证实存在，精确名收不全）
-  - "ads*-normal-*.zijieapi.com"
-  - "minigame*-normal-*.zijieapi.com"
-  - "gecko*.zijieapi.com"
-  # 番茄日志/监控的地区变体
-  - "log*-applog-*.fqnovel.com"
-  - "rtlog*-applog-*.fqnovel.com"
-  - "mon*-misc-*.fqnovel.com"
-  # 直播推广签名图变体（p1-p11）
-  - "p*-webcast-sign.douyinpic.com"
-
-ip_cidr_set:
-  # 上游给出的广告 IP（存疑项，误伤时整段删除）
-  - 49.71.37.101/32
-  - 117.71.105.23/32
-  - 218.94.207.205/32
-  - 117.92.229.188/32
-  - 101.36.166.16/32
-  - 180.96.2.114/32
+  - ads*-normal-*.zijieapi.com
+  - minigame*-normal-*.zijieapi.com
+  - p*-webcast-sign.douyinpic.com
 
 # ---- 章末广告说明（本文件管不到的部分）----
 # 章末/文中广告走 URL Rewrite 拦 pangolin-sdk-toutiao 的 get_ads 接口，
