@@ -1,0 +1,142 @@
+# 番茄小说去广告单独规则（Egern rule_set，策略在主配置里给 REJECT）
+# 合并来源（2026-10-30 拉取核对）：
+#   1) zqzess/rule_for_quantumultX Surge/Module/FanQieNovel.sgmodule（v3.1）
+#      https://raw.githubusercontent.com/zqzess/rule_for_quantumultX/master/Surge/Module/FanQieNovel.sgmodule
+#   2) 可莉（luestr）番茄小说去广告，经 QingRex/LoonKissSurge 转 Surge（文件日期 2025-11-12）
+#      https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/番茄小说去广告.sgmodule
+#   3) 补录（2026-10-30 二轮核对）：changzhaoCZ 屠龙刀（AdGuard 版）、abclq/home-dns-adblock
+#      实测 DNS 清单、hcnote 抓包 hosts —— 只收精确/前缀限定的广告项，通配按前缀限定
+#      （如 ads*-normal-*），不收整段通配（*byte* / *toutiao* / snssdk.com 整段等）。
+#      已核对未收：lf3-reading.fqnovelpic.com（屠龙刀收、但其他规则集专门放行它保插图，冲突，跳过）；
+#      tnc*-*.zijieapi.com（屠龙刀自己都备注可能要为评论区放行，跳过）；
+#      qznovelvod 的 reading-ad 系列（那是七猫的，不是番茄，跳过）。
+# 本文件只做分流层 REJECT（域名/IP）；章末广告的 URL Rewrite 不在 rule_set 能力内，见文末说明。
+#
+# 已剔除的上游误伤项（不要加回来）：
+#   - DOMAIN-KEYWORD,zijieapi（zqzess）：整段封字节接口域，会误伤抖音/头条等其他字节系 App
+#     → 已用下方 zijieapi 的精确广告子域替代（ads/minigame/gecko/mssdk 等）
+#   - DOMAIN-SUFFIX,bytedance.com（zqzess）：字节官网域，与看广告无关，剔除
+#   - DOMAIN-SUFFIX,byteorge.com / bytegoofy.com（zqzess）：整段封太宽，精确的 gecko3/gecko5 已收
+#   - security.snssdk.com（可莉版有收）：抖音账号登录要走它（AdGuard 版番茄规则专门给它放行），
+#     番茄用抖音号登录的话封了会登不上 → 未收；security-lq.snssdk.com 同理未收
+#   - DOMAIN,imapi3-normal-lf.zijieapi.com,DIRECT（zqzess）：那是给整段封 zijieapi 打的补丁，
+#     本文件不整段封，所以不需要这条放行
+# 保留存疑项（出问题优先删这几条）：
+#   - ip_cidr_set 的 6 个 /32：上游给的广告 IP，IP 可能被运营商回收复用，误伤时整段删掉即可
+#   - msync-im1-vip6-std.easemob.com：环信 IM 的同步域，若番茄私信/消息异常先删它
+#
+# ⚠️ 顺序要求：主配置里这条 rule_set 必须放在 ByteDance 直连规则集之前。
+#    ByteDance 集里有 snssdk.com / zijieapi.com / pstatp.com / byteimg.com / ixigua.com /
+#    toutiaocloud.com 的 DOMAIN-SUFFIX DIRECT，本文件域名几乎全落在里面，
+#    放在它后面将永远命中不到 REJECT。
+
+domain_set:
+  # 广告签名/素材（byteimg）
+  - p3-ad-sign.byteimg.com
+  - p6-ad-sign.byteimg.com
+  - p9-ad-sign.byteimg.com
+  - p3-developer.bytemaimg.com
+  # snssdk 广告与埋点
+  - i.snssdk.com
+  - i-lq.snssdk.com
+  - is.snssdk.com
+  - is-lq.snssdk.com
+  - effect.snssdk.com
+  - vas.snssdk.com
+  - mcs.snssdk.com
+  - tnc3-alisc1.snssdk.com
+  - tnc3-aliec2.snssdk.com
+  # 短链/跳转
+  - dig.bdurl.net
+  - dig.zjurl.cn
+  - ad.toutiao.com
+  - zlink.toutiao.com
+  - ichannel.snssdk.com
+  # 字节舞动活动广告
+  - activity-ag.awemeughun.com
+  # 第三方广告 SDK
+  - api.iegadp.qq.com
+  - apd-pcdnwxlogin.teg.tencent-cloud.net
+  - msync-im1-vip6-std.easemob.com
+  # 广告素材 CDN
+  - sf3-ttcdn-tos.pstatp.com
+  # 西瓜/番茄视频广告
+  - v6-novelapp.ixigua.com
+  # UG SDK
+  - zlink.ugsdk.cn
+  # 电商广告图片
+  - ecombdimg.com
+  # 监控/埋点补充
+  - mon.snssdk.com
+  - mon.zijieapi.com
+  - toblog.ctobsnssdk.com
+  - mssdk.volces.com
+  - praisewindow.ugsdk.cn
+  # 头条云监控/埋点
+  - mon.toutiaocloud.com
+  - mon.toutiaocloud.net
+  # 直播推广（番茄内嵌直播/短剧引流）
+  - webcast-open.douyin.com
+  - p11-webcast-sign.douyinpic.com
+  - p3-webcast-sign.douyinpic.com
+  - lf-normal-gr-sourcecdn.bytegecko.com
+  - lf-webcast-gr-sourcecdn.bytegecko.com
+  # 番茄自身日志/监控
+  - log3-applog.fqnovel.com
+  - log5-applog.fqnovel.com
+  - rtlog3-applog.fqnovel.com
+  - rtlog5-applog.fqnovel.com
+  - mon3-misc.fqnovel.com
+  - mon11-misc.fqnovel.com
+  - mon11-misc-lq.fqnovel.com
+  # zijieapi 精确广告子域（替代上游的整段 zijieapi 封锁）
+  - ads3-normal.zijieapi.com
+  - ads5-normal.zijieapi.com
+  - minigame3-normal.zijieapi.com
+  - minigame5-normal.zijieapi.com
+  - gecko3.zijieapi.com
+  - gecko5.zijieapi.com
+  - mssdk.zijieapi.com
+  - timon.zijieapi.com
+  - vcs.zijieapi.com
+  - ma.zijieapi.com
+  - feedback-c.zijieapi.com
+  - abtest3-misc.zijieapi.com
+
+domain_suffix_set:
+  # 穿山甲广告素材
+  - pglstatp-toutiao.com
+  # 穿山甲广告 SDK 整域（api-access/log-api 等子域均为广告 SDK 接口）
+  - pangolin-sdk-toutiao.com
+  - pangolin-sdk-toutiao1.com
+
+domain_wildcard_set:
+  # 西瓜视频广告分发（上游原文 DOMAIN,*default.ixigua.com / *novelapp.ixigua.com）
+  - "*default.ixigua.com"
+  - "*novelapp.ixigua.com"
+  # zijieapi 广告子域的地区变体（-hl/-lf/-lq，实测 DNS 清单证实存在，精确名收不全）
+  - "ads*-normal-*.zijieapi.com"
+  - "minigame*-normal-*.zijieapi.com"
+  - "gecko*.zijieapi.com"
+  # 番茄日志/监控的地区变体
+  - "log*-applog-*.fqnovel.com"
+  - "rtlog*-applog-*.fqnovel.com"
+  - "mon*-misc-*.fqnovel.com"
+  # 直播推广签名图变体（p1-p11）
+  - "p*-webcast-sign.douyinpic.com"
+
+ip_cidr_set:
+  # 上游给出的广告 IP（存疑项，误伤时整段删除）
+  - 49.71.37.101/32
+  - 117.71.105.23/32
+  - 218.94.207.205/32
+  - 117.92.229.188/32
+  - 101.36.166.16/32
+  - 180.96.2.114/32
+
+# ---- 章末广告说明（本文件管不到的部分）----
+# 章末/文中广告走 URL Rewrite 拦 pangolin-sdk-toutiao 的 get_ads 接口，
+# rule_set 文件装不下重写规则。你现用配置的 modules 里已经挂了上游原版模块
+# （zqzess FanQieNovel.sgmodule），现在是 enabled: false；
+# 只开分流不够、还想去章末广告的话，把它改成 enabled: true 即可，
+# 但注意那个模块自带整段 zijieapi 封锁，开启后其他字节系 App 异常先关它排查。
