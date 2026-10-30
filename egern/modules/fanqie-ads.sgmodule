@@ -1,4 +1,4 @@
-#!name=番茄小说去广告（修正版 v5）
+#!name=番茄小说去广告（修正版 v6）
 #!desc=去开屏/章末/听书页广告。基于 zqzess v3.1 + 可莉版清洗：删 dig.bdurl.net（拦了会坏听书，见 zqzess issue #66）、删整段 zijieapi/bytedance.com 封锁、删 security.snssdk.com（保抖音号登录）
 #!category=去广告
 
@@ -87,4 +87,7 @@ DOMAIN,p*-webcast-sign.douyinpic.com,REJECT
 ^https?:\/\/adim\.pinduoduo\.com\/.+\/toutiao\?.+ - reject
 
 [MITM]
-hostname = %APPEND% *.pangolin-sdk-toutiao,*.pangolin-sdk-toutiao.*,*.pstatp.com,*.pstatp.com.*,*.pglstatp-toutiao.com.*,*.pglstatp-toutiao.com,gurd.snssdk.com,gurd.snssdk.com.*,*default.ixigua.com,adim.pinduoduo.com,*.fqnovelvod.com
+hostname = %APPEND% *.pangolin-sdk-toutiao,*.pangolin-sdk-toutiao.*,*.pstatp.com,*.pstatp.com.*,*.pglstatp-toutiao.com.*,*.pglstatp-toutiao.com,gurd.snssdk.com,gurd.snssdk.com.*,*default.ixigua.com,adim.pinduoduo.com
+# [v6删除] MITM 名单去掉 *.fqnovelvod.com——v2 已删该域的全部重写，解密只剩副作用：
+#   原版与修正版都不能播、dig 规则两版不同却同样失败，排除 dig；两版共同项里只有 MITM 解密 fqnovelvod 能碰到音频流（ttplayer/VOD 对解密敏感）。
+#   且用户 09:00 关模块日志里 dig 照样 REJECT 但播放正常，证明 dig 只管进度同步、不是播放元凶。

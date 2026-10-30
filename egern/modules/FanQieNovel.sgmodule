@@ -1,4 +1,4 @@
-#!name=番茄小说（原版修正 v5）
+#!name=番茄小说（原版修正 v6）
 #!desc=番茄小说广告屏蔽（zqzess v3.1 原版，仅删除 dig.bdurl.net 一条：拦它会影响听书功能/进度保存，见原仓库 issue #66；其余内容与原版完全一致；v2 再撤三处会误伤听书播放的项，见文件内 [v2删除] 标注）
 #!category=zqzess
 # 修正版说明（2026-10-30，BitJarvis/firewall）：基于 zqzess/rule_for_quantumultX 的 Surge/Module/FanQieNovel.sgmodule 原文。
@@ -103,4 +103,7 @@ URL-REGEX,^http:\/\/.+\.byteimg\.com\/web\.business\.image,REJECT
 # [v2删除] fqnovelvod 的 novelapp/video 路径重写 —— 那是正文媒体 CDN 路径，同上
 
 [MITM]
-hostname = %APPEND% *.pangolin-sdk-toutiao,*.pangolin-sdk-toutiao.*,*.pstatp.com,*.pstatp.com.*,*.pglstatp-toutiao.com.*,*.pglstatp-toutiao.com,gurd.snssdk.com,gurd.snssdk.com.*,*default.ixigua.com,adim.pinduoduo.com,*.fqnovelvod.com
+hostname = %APPEND% *.pangolin-sdk-toutiao,*.pangolin-sdk-toutiao.*,*.pstatp.com,*.pstatp.com.*,*.pglstatp-toutiao.com.*,*.pglstatp-toutiao.com,gurd.snssdk.com,gurd.snssdk.com.*,*default.ixigua.com,adim.pinduoduo.com
+# [v6删除] MITM 名单去掉 *.fqnovelvod.com——v2 已删该域的全部重写，解密只剩副作用：
+#   原版与修正版都不能播、dig 规则两版不同却同样失败，排除 dig；两版共同项里只有 MITM 解密 fqnovelvod 能碰到音频流（ttplayer/VOD 对解密敏感）。
+#   且用户 09:00 关模块日志里 dig 照样 REJECT 但播放正常，证明 dig 只管进度同步、不是播放元凶。
