@@ -10,6 +10,10 @@
 #      已核对未收：lf3-reading.fqnovelpic.com（屠龙刀收、但其他规则集专门放行它保插图，冲突，跳过）；
 #      tnc*-*.zijieapi.com（屠龙刀自己都备注可能要为评论区放行，跳过）；
 #      qznovelvod 的 reading-ad 系列（那是七猫的，不是番茄，跳过）。
+# 2026-10-30 修复（听书进度保存不了）：删除 dig.bdurl.net 与 dig.zjurl.cn。
+#   zqzess 仓库 issue #66（2026-02-08）已证实：拦 dig.bdurl.net 会影响听书功能，
+#   报告者给的解法就是去掉这行/改 DIRECT。bdurl/zjurl 是字节的动态链接解析服务，
+#   听书的音频地址解析也走它，不能当普通短链广告域拦。用户实测中招后删除。
 # 本文件只做分流层 REJECT（域名/IP）；章末广告的 URL Rewrite 不在 rule_set 能力内，见文末说明。
 #
 # 已剔除的上游误伤项（不要加回来）：
@@ -47,8 +51,6 @@ domain_set:
   - tnc3-alisc1.snssdk.com
   - tnc3-aliec2.snssdk.com
   # 短链/跳转
-  - dig.bdurl.net
-  - dig.zjurl.cn
   - ad.toutiao.com
   - zlink.toutiao.com
   - ichannel.snssdk.com
