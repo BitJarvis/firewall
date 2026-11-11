@@ -1,6 +1,6 @@
 # Firewall · 代理配置与分流规则
 
-个人维护的 **Quantumult X / Egern / Clash** 代理配置与规则片段，包含 Apple AI 分流、AI 服务、媒体服务及广告过滤相关配置。
+个人维护的 **Surge / Egern / Clash / Quantumult X** 代理配置与分流规则集，包含完整的 **AI 服务（Gemini / AI Studio / Antigravity / Claude / OpenAI / Grok / Apple Intelligence 及主流 AIGC）**、自用补充域名、媒体服务及广告过滤规则。
 
 > [!IMPORTANT]
 > `quantumultx.conf` 和 `qxv2.conf` 是两套**独立的 Quantumult X 完整配置**，不要把它们当作普通规则列表导入，也不要直接拼接两份配置。
@@ -19,17 +19,27 @@
 
 ## 快速使用
 
-### Egern 自用分流补充订阅
+### 1. AI 全平台与自用规则集（Surge / Egern / Clash 三端同步）
 
-新增两份普通 Egern 规则集：[`custom-direct.yaml`](./egern/rules/custom-direct.yaml)（`cn-ssl` 直连）和 [`custom-proxy.yaml`](./egern/rules/custom-proxy.yaml)（其余 37 条域名共用一个代理策略）。规则集只保存匹配条件，不引用其他订阅。
+以 `egern/rules/*.yaml` 为单一事实源（Single Source of Truth），整合了 [Sukka AIGC 规则集](https://ruleset.skk.moe/List/non_ip/ai.conf)、Google AI 内部生产端点（`-pa.googleapis.com` / `.clients6.google.com` / Antigravity / NotebookLM / Jules）及主流 AI 平台，并通过 `python3 scripts/sync_clash_rules.py` 一键同步生成 **Clash** 与 **Surge** 规则集：
 
-在 Egern「工具 → 规则」添加规则集地址，直连集绑定 `DIRECT`，代理集绑定你选择的同一个策略组。分支测试地址、main 长期地址、规则顺序和迁移步骤见 [`docs/EGERN_SUBSCRIPTIONS.md`](./docs/EGERN_SUBSCRIPTIONS.md)。
+| 规则模块 | 说明 | Surge (`RULE-SET`) | Egern (`rule_set`) | Clash (`classical`) |
+| --- | --- | --- | --- | --- |
+| **Gemini** | Gemini / AI Studio / NotebookLM / Jules / Antigravity / Cloud Code | [`gemini.list`](https://raw.githubusercontent.com/BitJarvis/firewall/main/surge/rules/gemini.list) | [`gemini.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/egern/rules/gemini.yaml) | [`gemini.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/clash/rules/gemini.yaml) |
+| **Claude** | Anthropic / Claude Web & Code / 静态资源 | [`claude.list`](https://raw.githubusercontent.com/BitJarvis/firewall/main/surge/rules/claude.list) | [`claude.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/egern/rules/claude.yaml) | [`claude.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/clash/rules/claude.yaml) |
+| **OpenAI** | OpenAI / ChatGPT / Sora / 鉴权CDN | [`openai.list`](https://raw.githubusercontent.com/BitJarvis/firewall/main/surge/rules/openai.list) | [`openai.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/egern/rules/openai.yaml) | [`openai.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/clash/rules/openai.yaml) |
+| **Grok** | xAI / Grok / X | [`grok.list`](https://raw.githubusercontent.com/BitJarvis/firewall/main/surge/rules/grok.list) | [`grok.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/egern/rules/grok.yaml) | [`grok.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/clash/rules/grok.yaml) |
+| **Apple AI** | Apple Intelligence / Siri / Private Cloud Relay | [`apple-ai.list`](https://raw.githubusercontent.com/BitJarvis/firewall/main/surge/rules/apple-ai.list) | [`apple-ai.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/egern/rules/apple-ai.yaml) | [`apple-ai.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/clash/rules/apple-ai.yaml) |
+| **AI 综合** | 兜底 Cursor / Windsurf / Perplexity / OpenRouter / Copilot 等全部 AIGC | [`ai.list`](https://raw.githubusercontent.com/BitJarvis/firewall/main/surge/rules/ai.list) | [`ai.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/egern/rules/ai.yaml) | [`ai.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/clash/rules/ai.yaml) |
+| **自用直连** | `cn-ssl` / `local` 直连修正 | [`custom-direct.list`](https://raw.githubusercontent.com/BitJarvis/firewall/main/surge/rules/custom-direct.list) | [`custom-direct.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/egern/rules/custom-direct.yaml) | [`custom-direct.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/clash/rules/custom-direct.yaml) |
+| **自用代理** | 交易所 / Web3 / 常用工具域名补充 | [`custom-proxy.list`](https://raw.githubusercontent.com/BitJarvis/firewall/main/surge/rules/custom-proxy.list) | [`custom-proxy.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/egern/rules/custom-proxy.yaml) | [`custom-proxy.yaml`](https://raw.githubusercontent.com/BitJarvis/firewall/main/clash/rules/custom-proxy.yaml) |
 
-### Clash 自用分流补充订阅
+详细接入方式与规则优先级说明见：
+- Surge：[`docs/SURGE_SUBSCRIPTIONS.md`](./docs/SURGE_SUBSCRIPTIONS.md)
+- Egern：[`docs/EGERN_SUBSCRIPTIONS.md`](./docs/EGERN_SUBSCRIPTIONS.md)
+- Clash / Mihomo：[`docs/CLASH_SUBSCRIPTIONS.md`](./docs/CLASH_SUBSCRIPTIONS.md)
 
-同一批匹配条件也提供 Clash `classical` 规则集：[`custom-direct.yaml`](./clash/rules/custom-direct.yaml)（1 条直连）和 [`custom-proxy.yaml`](./clash/rules/custom-proxy.yaml)（37 条代理）。直连绑定 `DIRECT`，代理绑定同一个自选策略组。订阅地址及配置示例见 [`docs/CLASH_SUBSCRIPTIONS.md`](./docs/CLASH_SUBSCRIPTIONS.md)。
-
-维护时修改 Egern 源文件，再运行 `python3 scripts/sync_clash_rules.py` 同步生成 Clash 文件；提交前运行 `python3 scripts/sync_clash_rules.py --check` 检查一致性。
+维护时只需编辑 `egern/rules/*.yaml` 源文件，再运行 `python3 scripts/sync_clash_rules.py` 同步生成 Clash 与 Surge 文件；提交前运行 `python3 scripts/sync_clash_rules.py --check` 校验一致性。
 
 ### 原有配置与规则片段
 
@@ -55,13 +65,17 @@
 ```text
 firewall/
 ├── README.md                 # 入口与使用说明
+├── egern/rules/              # 单一维护源（Egern YAML 规则集）
+├── surge/rules/              # 自动生成的 Surge RULE-SET 规则集 (.list)
+├── clash/rules/              # 自动生成的 Clash classical 规则集 (.yaml)
+├── scripts/
+│   └── sync_clash_rules.py   # Egern -> Clash / Surge 多端同步与一致性校验脚本
 ├── quantumultx.conf          # Quantumult X 主配置（保留原有路径）
 ├── qxv2.conf                 # Quantumult X 另一套配置（保留原有路径）
-├── apple-ai-egern.conf       # Apple AI Egern 风格规则片段
-├── apple-ai.conf             # Apple AI 待统一格式的草稿
-├── bitjarvis.conf            # 自定义规则片段
-├── docs/
-│   └── MAINTENANCE.md        # 已知问题与后续整理建议
+├── apple-ai-egern.conf       # Apple AI Egern 风格规则片段（兼容保留）
+├── apple-ai.conf             # Apple AI 待统一格式的草稿（兼容保留）
+├── bitjarvis.conf            # 自定义规则片段（兼容保留）
+├── docs/                     # Surge / Egern / Clash 接入指南与维护文档
 └── .gitignore                # 忽略系统/本地临时文件
 ```
 
@@ -78,4 +92,4 @@ firewall/
 
 ## 来源说明
 
-现有完整配置引用了 [blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)、[ConnersHua/RuleGo](https://github.com/ConnersHua/RuleGo) 等第三方资源。相关规则及脚本的维护、许可证和兼容性由各上游项目决定。
+现有规则集与完整配置整合参考了 [SukkaW/Surge](https://github.com/SukkaW/Surge)、[ACL4SSR](https://github.com/ACL4SSR/ACL4SSR)、[blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)、[ConnersHua/RuleGo](https://github.com/ConnersHua/RuleGo) 等第三方资源。相关规则及脚本的维护、许可证和兼容性由各上游项目决定。

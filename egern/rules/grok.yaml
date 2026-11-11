@@ -1,0 +1,7 @@
+# xAI Grok (Egern)
+# 合并自 Sukka AIGC 与自用 Grok 规则
+domain_suffix_set:
+  - x.ai
+  - grok.com
+  - grokipedia.com
+  - x.com

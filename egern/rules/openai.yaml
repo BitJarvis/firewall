@@ -1,0 +1,20 @@
+# OpenAI / ChatGPT / Sora (Egern)
+# 合并自 Sukka AIGC 与 ACL4SSR OpenAi.list
+domain_keyword_set:
+  - openai
+
+domain_suffix_set:
+  - openai.com
+  - chatgpt.com
+  - chatgpt.site
+  - chat.com
+  - ai.com
+  - sora.com
+  - oaistatic.com
+  - oaiusercontent.com
+  - openaiapi-site.azureedge.net
+  - auth0.com
+  - client-api.arkoselabs.com
+  - events.statsigapi.net
+  - featuregates.org
+  - identrust.com

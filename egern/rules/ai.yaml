@@ -1,0 +1,127 @@
+# AIGC 综合规则集（Egern）
+# 完整合并 Sukka AIGC (ruleset.skk.moe/List/non_ip/ai.conf) + ACL4SSR AI.list + 主流 AI 开发/推理平台
+# 提示：若客户端已对 Gemini / Claude / OpenAI / Grok 单独分组，请将细分规则集置于本综合集之前
+domain_keyword_set:
+  - openai
+  - anthropic
+  - claude
+  - colab
+  - developerprofiles
+  - generativelanguage
+  - alkalimakersuite-pa.clients6.google.com
+
+domain_suffix_set:
+  # Google Gemini / DeepMind / NotebookLM
+  - g.ai
+  - gemini.google
+  - gemini.google.com
+  - bard.google.com
+  - aistudio.google.com
+  - makersuite.google.com
+  - notebooklm.google
+  - notebooklm.google.com
+  - deepmind.com
+  - deepmind.google
+  - generativeai.google
+  - generativelanguage.googleapis.com
+  - proactivebackend-pa.googleapis.com
+  - geller-pa.googleapis.com
+  - cloudcode-pa.googleapis.com
+  # OpenAI / ChatGPT / Sora
+  - openai.com
+  - chatgpt.com
+  - chatgpt.site
+  - chat.com
+  - ai.com
+  - sora.com
+  - oaistatic.com
+  - oaiusercontent.com
+  - openaiapi-site.azureedge.net
+  # Anthropic Claude
+  - anthropic.com
+  - claude.ai
+  - claude.com
+  - clau.de
+  - claudeusercontent.com
+  # xAI Grok
+  - x.ai
+  - grok.com
+  - grokipedia.com
+  # AI Coding & Agent Platforms (Cursor / Windsurf / Codeium / Copilot / JetBrains)
+  - cursor.com
+  - cursor.sh
+  - cursor-cdn.com
+  - cursorapi.com
+  - codeium.com
+  - codeiumdata.com
+  - windsurf.com
+  - copilot.microsoft.com
+  - copilot.cloud.microsoft
+  - ai.azure.com
+  - jetbrains.ai
+  - grazie.ai
+  - grazie.aws.intellij.net
+  # Search / Inference / Aggregators / Creative AI
+  - perplexity.ai
+  - openrouter.ai
+  - poe.com
+  - dify.ai
+  - groq.com
+  - mistral.ai
+  - together.xyz
+  - cohere.ai
+  - cohere.com
+  - huggingface.co
+  - hf.co
+  - replicate.com
+  - replicate.delivery
+  - jasper.ai
+  - openart.ai
+  - clipdrop.co
+  - midjourney.com
+  - elevenlabs.io
+  - suno.com
+  - suno.ai
+  - udio.com
+  - runwayml.com
+  - lovable.dev
+  - v0.dev
+  - bolt.new
+  - manus.im
+  - meta.ai
+  - metaaivm.com
+  - metaaiusercontent.com
+  # Auth / Telemetry / Bot-check shared by AI platforms
+  - auth0.com
+  - client-api.arkoselabs.com
+  - events.statsigapi.net
+  - featuregates.org
+  - identrust.com
+  - intercom.io
+  - intercomcdn.com
+
+domain_set:
+  - ai.google.dev
+  - jules.google.com
+  - antigravity.google
+  - antigravity-unleash.goog
+  - aida.googleapis.com
+  - aisandbox-pa.googleapis.com
+  - daily-cloudcode-pa.googleapis.com
+  - robinfrontend-pa.googleapis.com
+  - alkalicore-pa.clients6.google.com
+  - alkalimakersuite-pa.clients6.google.com
+  - paa-pa.googleapis.com
+  - ogs.google.com
+  - server.codeium.com
+  - inference.codeium.com
+  - server.self-serve.windsurf.com
+  - gateway.ai.cloudflare.com
+  - api.jetbrains.ai
+  - api.github.com
+  - api.githubcopilot.com
+  - copilot-proxy.githubusercontent.com
+  - api.groq.com
+  - console.groq.com
+  - api.together.xyz
+  - sydney.bing.com

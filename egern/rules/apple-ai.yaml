@@ -1,0 +1,32 @@
+# Apple Intelligence / Siri / Private Cloud Compute (Egern)
+# 整理自 apple-ai-egern.conf 与 RocM301 Apple-Rule（策略由客户端绑定）
+domain_suffix_set:
+  - smoot.apple.com
+  - ls.apple.com
+  - mask-h2.icloud.com
+  - mask.icloud.com
+
+domain_set:
+  - apple-relay.apple.com
+  - apple-relay.fastly-edge.com
+  - apple-relay.cloudflare.com
+  - apple-relay.mask.apple-dns.net
+  - apple-relay.akamaized.net
+  - apple-carry-relay.cloudflare.com
+  - cp4.cloudflare.com
+  - guzzoni.apple.com
+  - guzzoni.smoot.apple.com
+  - gspe1-ssl.ls.apple.com
+  - api-siri-prod.apple.com
+  - seed.siri.apple.com
+  - seed-sequoia.siri.apple.com
+  - sequoia.apple.com
+  - mask-api.fe.apple-dns.net
+  - mask-api.fe2.apple-dns.net
+  - mask-api.icloud.com
+  - mask-t.apple-dns.net
+  - mask.apple-dns.net
+  - gateway.icloud.com
+  - probe.icloud.com
+  - metrics.icloud.com
+  - wps.apple.com

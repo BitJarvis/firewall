@@ -1,0 +1,17 @@
+# Anthropic Claude (Egern)
+# 合并自 Sukka AIGC、ACL4SSR ClaudeAI.list 及 Claude 生产静态资源域
+domain_keyword_set:
+  - anthropic
+  - claude
+
+domain_suffix_set:
+  - anthropic.com
+  - claude.ai
+  - claude.com
+  - clau.de
+  - claudeusercontent.com
+  - intercom.io
+  - intercomcdn.com
+
+domain_set:
+  - cdn.usefathom.com
